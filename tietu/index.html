@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="帖图网提供海量高清壁纸、表情包、游戏素材及创意设计图片分享，支持分类浏览与一键下载，满足您的设计与娱乐需求。">
+    <meta name="keywords" content="帖图,壁纸,表情包,素材,高清图片,设计资源">
+    <title>帖图-海量高清壁纸素材与创意图片分享平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+            margin-left: 1rem;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 99px;
+            background-color: var(--bg-body);
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: var(--bg-card);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Category Grid */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .cat-item {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .cat-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cat-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .cat-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .img-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            position: relative;
+            group: card;
+        }
+
+        .img-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .img-wrapper {
+            position: relative;
+            padding-top: 66.66%; /* 3:2 Aspect Ratio */
+            background-color: #e2e8f0;
+            overflow: hidden;
+        }
+
+        .img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .img-card:hover .img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .img-card:hover .img-overlay {
+            opacity: 1;
+        }
+
+        .action-btn {
+            background: white;
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--bg-card);
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: #eff6ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin: 0;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>帖图</span>
+            </a>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索壁纸、插画、素材...">
+                <button aria-label="搜索">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">热门</a>
+                <a href="#">壁纸</a>
+                <a href="#">表情包</a>
+                <a href="#">上传</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>发现高清视觉灵感</h1>
+                <p>汇聚全球设计师与摄影爱好者的作品，为您的设备、设计与生活注入色彩。</p>
+                <div class="hero-tags">
+                    <span class="tag">#4K超清壁纸</span>
+                    <span class="tag">#二次元插画</span>
+                    <span class="tag">#商业素材</span>
+                    <span class="tag">#极简设计</span>
+                    <span class="tag">#复古摄影</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Categories -->
+            <section class="categories">
+                <div class="cat-item">
+                    <span class="cat-icon">🖼️</span>
+                    <span class="cat-name">高清壁纸</span>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-icon">😀</span>
+                    <span class="cat-name">表情包</span>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-icon">🎨</span>
+                    <span class="cat-name">设计素材</span>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-icon">🎮</span>
+                    <span class="cat-name">游戏截图</span>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-icon">🌸</span>
+                    <span class="cat-name">风景摄影</span>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-icon">🏢</span>
+                    <span class="cat-name">建筑图集</span>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-icon">🚀</span>
+                    <span class="cat-name">科技数码</span>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-icon">📚</span>
+                    <span class="cat-name">矢量图</span>
+                </div>
+            </section>
+
+            <!-- Featured Grid -->
+            <section class="section-title">
+                <h2>本周精选帖图</h2>
+                <a href="#" style="font-size: 0.9rem; color: var(--primary-color); font-weight: 500;">查看更多 &rarr;</a>
+            </section>
+
+            <div class="image-grid">
+                <!-- Card 1 -->
+                <article class="img-card">
+                    <div class="img-wrapper">
+                        <img src="https://picsum.photos/seed/pic1/400/300" alt="极简抽象几何壁纸" loading="lazy">
+                        <div class="img-overlay">
+                            <button class="action-btn" title="收藏">♥</button>
+                            <button class="action-btn" title="下载">↓</button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">极简抽象几何壁纸</h3>
+                        <div class="card-meta">
+                            <span>设计素材</span>
+                            <span>2.4k 收藏</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="img-card">
+                    <div class="img-wrapper">
+                        <img src="https://picsum.photos/seed/pic2/400/300" alt="城市夜景摄影" loading="lazy">
+                        <div class="img-overlay">
+                            <button class="action-btn">♥</button>
+                            <button class="action-btn">↓</button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">赛博朋克城市夜景</h3>
+                        <div class="card-meta">
+                            <span>摄影作品</span>
+                            <span>5.1k 收藏</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="img-card">
+                    <div class="img-wrapper">
+                        <img src="https://picsum.photos/seed/pic3/400/300" alt="可爱卡通表情包" loading="lazy">
+                        <div class="img-overlay">
+                            <button class="action-btn">♥</button>
+                            <button class="action-btn">↓</button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">工作摸鱼专用表情包</h3>
+                        <div class="card-meta">
+                            <span>表情包</span>
+                            <span>8.9k 收藏</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="img-card">
+                    <div class="img-wrapper">
+                        <img src="https://picsum.photos/seed/pic4/400/300" alt="自然风光壁纸" loading="lazy">
+                        <div class="img-overlay">
+                            <button class="action-btn">♥</button>
+                            <button class="action-btn">↓</button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">阿尔卑斯山脉晨曦</h3>
+                        <div class="card-meta">
+                            <span>风景壁纸</span>
+                            <span>3.2k 收藏</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="img-card">
+                    <div class="img-wrapper">
+                        <img src="https://picsum.photos/seed/pic5/400/300" alt="UI界面设计稿" loading="lazy">
+                        <div class="img-overlay">
+                            <button class="action-btn">♥</button>
+                            <button class="action-btn">↓</button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">金融APP界面设计</h3>
+                        <div class="card-meta">
+                            <span>UI设计</span>
+                            <span>1.5k 收藏</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="img-card">
+                    <div class="img-wrapper">
+                        <img src="https://picsum.photos/seed/pic6/400/300" alt="复古海报素材" loading="lazy">
+                        <div class="img-overlay">
+                            <button class="action-btn">♥</button>
+                            <button class="action-btn">↓</button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">80年代复古海报风格</h3>
+                        <div class="card-meta">
+                            <span>插画素材</span>
+                            <span>4.7k 收藏</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Features -->
+            <section class="features">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h4 class="feature-title">高速加载</h4>
+                        <p class="feature-desc">智能CDN加速，确保图片秒开，支持4K高清预览。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <h4 class="feature-title">版权安全</h4>
+                        <p class="feature-desc">严格审核上传内容，提供正版授权与商用保障。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🤝</div>
+                        <h4 class="feature-title">社区互动</h4>
+                        <p class="feature-desc">评论、点赞、收藏，与设计师交流创作心得。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>帖图</h3>
+                    <p>专注于发现与分享优质视觉内容，为设计师、创作者和爱好者提供灵感源泉。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>浏览分类</h4>
+                    <ul>
+                        <li><a href="#">手机壁纸</a></li>
+                        <li><a href="#">电脑壁纸</a></li>
+                        <li><a href="#">高清摄影</a></li>
+                        <li><a href="#">矢量素材</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">上传指南</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">API接口</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 帖图网 版权所有. 本站所有图片资源仅供学习交流使用。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+                                                     </html>
