@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="你好李焕英票房实时查询页面，提供《你好，李焕英》电影实时票房数据、累计总票房、上映日期、口碑评分及观影指南。">
+    <meta name="keywords" content="你好李焕英票房实时,你好李焕英总票房,你好李焕英票房排名,你好李焕英电影">
+    <title>你好李焕英票房实时-电影数据与观影指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #e60012; /* 电影红 */
+            --secondary-color: #f5f5f5;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --bg-body: #f9f9f9;
+            --bg-card: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        /* Hero 区域 - 票房大屏 */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .boxoffice-display {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .boxoffice-label {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .boxoffice-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .boxoffice-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        /* 主要内容区 */
+        main {
+            padding: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* 数据概览卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* 电影信息网格 */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .movie-poster {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+            aspect-ratio: 2/3;
+        }
+
+        .movie-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .movie-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .movie-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: #ffebeb;
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .movie-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+
+        .info-label {
+            color: var(--text-light);
+        }
+
+        .info-val {
+            font-weight: 500;
+        }
+
+        /* 排行榜 */
+        .chart-container {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .chart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+
+        .chart-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .rank-1 { background-color: #ffd700; color: #fff; }
+        .rank-2 { background-color: #c0c0c0; color: #fff; }
+        .rank-3 { background-color: #cd7f32; color: #fff; }
+        .rank-other { background-color: #f0f0f0; color: var(--text-light); }
+
+        .chart-title {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .chart-boxoffice {
+            text-align: right;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* FAQ 部分 */
+        .faq-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 50px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            padding-left: 10px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2a2a2a;
+            color: #999;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* 简化移动端展示 */
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .boxoffice-amount {
+                font-size: 2.5rem;
+            }
+
+            .movie-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .movie-poster {
+                order: -1; /* 图片在移动端置顶 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav-wrapper">
+        <a href="#" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+            </svg>
+            影视票房通
+        </a>
+        <nav class="nav-links">
+            <a href="#" class="active">首页</a>
+            <a href="#">实时票房</a>
+            <a href="#">影片库</a>
+            <a href="#">排行榜</a>
+            <a href="#">关于我们</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>你好李焕英票房实时</h1>
+        <p>中国影史票房冠军，贾玲导演处女作数据追踪</p>
+        
+        <div class="boxoffice-display">
+            <div class="boxoffice-label">累计总票房</div>
+            <div class="boxoffice-amount">54,131,400</div>
+            <div class="boxoffice-meta">
+                <span>上映日期：2021年2月12日</span>
+                <span>单日票房：已下映</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="container">
+    <!-- 数据概览 -->
+    <section>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">54.13亿</div>
+                <div class="stat-label">人民币 (CNY)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">NO.1</div>
+                <div class="stat-label">中国影史总票房冠军</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">-</div>
+                <div class="stat-label">豆瓣评分 (历史数据)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">56,913,400</div>
+                <div class="stat-label">总观影人次</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 电影详情与排行榜 -->
+    <div class="movie-grid">
+        <!-- 左侧：电影详情 -->
+        <article>
+            <div class="section-header">
+                <h2 class="section-title">电影详情</h2>
+            </div>
+            
+            <div class="movie-info">
+                <h3 class="movie-title">你好，李焕英</h3>
+                <div class="movie-tags">
+                    <span class="tag">喜剧</span>
+                    <span class="tag">剧情</span>
+                    <span class="tag">家庭</span>
+                </div>
+                <p class="movie-desc">
+                    《你好，李焕英》是贾玲执导并编剧的喜剧电影，由张小斐、贾玲、沈腾主演。该片根据贾玲的真实经历改编，讲述了刚刚考上大学的女孩贾晓玲意外穿越回1981年，遇到了年轻时的母亲李焕英，并为了帮助母亲高兴而展开的一系列啼笑皆非的故事。影片于2021年大年初一上映，凭借真挚的情感和精湛的演技赢得了观众的广泛好评。
+                </p>
+                
+                <div class="info-row">
+                    <span class="info-label">导演</span>
+                    <span class="info-val">贾玲</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">编剧</span>
+                    <span class="info-val">贾玲</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">主演</span>
+                    <span class="info-val">贾玲、张小斐、沈腾、陈赫</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">片长</span>
+                    <span class="info-val">129 分钟</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">制片地区</span>
+                    <span class="info-val">中国大陆</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 右侧：实时票房榜单 -->
+        <aside>
+            <div class="section-header">
+                <h2 class="section-title">历史票房排行</h2>
+            </div>
+            <div class="chart-container">
+                <div class="chart-list">
+                    <div class="chart-item">
+                        <div class="rank rank-1">1</div>
+                        <div class="chart-title">你好，李焕英</div>
+                        <div class="chart-boxoffice">54.13亿</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="rank rank-2">2</div>
+                        <div class="chart-title">长津湖</div>
+                        <div class="chart-boxoffice">57.75亿</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="rank rank-3">3</div>
+                        <div class="chart-title">战狼2</div>
+                        <div class="chart-boxoffice">56.94亿</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="rank rank-other">4</div>
+                        <div class="chart-title">哪吒之魔童降世</div>
+                        <div class="chart-boxoffice">50.35亿</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="rank rank-other">5</div>
+                        <div class="chart-title">流浪地球</div>
+                        <div class="chart-boxoffice">46.86亿</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- 常见问题 -->
+    <section class="faq-section">
+        <div class="section-header">
+            <h2 class="section-title">关于票房数据的常见问题</h2>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                为什么“你好李焕英”是票房冠军？
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                该片在2021年春节档上映，凭借深厚的情感共鸣、高质量的喜剧效果以及强大的演员阵容，在上映期间创造了单日票房纪录，并最终超越《战狼2》成为中国影史票房冠军。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                如何理解“你好李焕英票房实时”的查询需求？
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                用户搜索此关键词通常是为了确认该片的历史最终成绩，或者想了解其在中国电影票房排行榜中的具体位置。由于该片已下映，数据为历史累计数据。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                票房数据是如何统计的？
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                电影票房数据由国家电影局或专业票房统计机构（如猫眼专业版、灯塔专业版）根据全国影院售票系统的实时数据汇总得出，包括总票房、人次、排片占比等。
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#">免责声明</a>
+            <a href="#">数据来源</a>
+            <a href="#">联系合作</a>
+        </div>
+        <p class="copyright">© 2024 影视票房通. 保留所有权利. 本站数据仅供参考，最终以官方发布为准。</p>
+    </div>
+</footer>
+
+</body>
+</html>
