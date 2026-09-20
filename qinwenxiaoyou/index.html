@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="本站提供丰富多样的亲吻小游戏在线游玩，包含浪漫约会模拟、互动情侣挑战及趣味亲吻接吻游戏，无需下载，直接体验甜蜜互动乐趣。">
+    <meta name="keywords" content="亲吻小游戏,情侣游戏,接吻游戏,浪漫小游戏,互动游戏">
+    <title>亲吻小游戏-浪漫甜蜜的互动体验与在线游玩指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff7eb3;
+            --secondary-color: #ff758c;
+            --accent-color: #ff4d6d;
+            --bg-color: #fff0f3;
+            --card-bg: #ffffff;
+            --text-main: #4a4a4a;
+            --text-light: #888888;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 4px 12px rgba(255, 125, 140, 0.1);
+            --shadow-hover: 0 8px 24px rgba(255, 77, 109, 0.2);
+            --font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-play:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.4);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: radial-gradient(circle at 50% 50%, #ffe6eb 0%, var(--bg-color) 70%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* 游戏分类 */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ffe0e6;
+            border-radius: 30px;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-tag.active, .category-tag:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* 游戏网格 */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .game-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 77, 109, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .game-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 15px;
+        }
+
+        .rating {
+            color: #ffb400;
+        }
+
+        /* 游戏玩法指南 */
+        .guide-section {
+            background: white;
+            padding: 60px 0;
+            margin-top: 40px;
+            border-radius: var(--radius-lg);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .guide-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .guide-content p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .guide-list {
+            list-style: none;
+        }
+
+        .guide-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .guide-list li::before {
+            content: '♥';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .guide-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* 页脚 */
+        footer {
+            background: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-wrapper {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+
+            .card-image {
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span>💋</span> 甜蜜游戏
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#new">最新游戏</a></li>
+                    <li><a href="#popular">热门榜单</a></li>
+                    <li><a href="#guide">玩法攻略</a></li>
+                    <li><a href="#" class="btn-play">开始游戏</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>探索浪漫的<br>亲吻小游戏世界</h1>
+                <p>在这里，每一次点击都是一次心跳加速的甜蜜互动。无需下载，无需注册，打开浏览器即可享受最纯粹的情侣互动乐趣。</p>
+                <div class="categories">
+                    <span class="category-tag active">全部</span>
+                    <span class="category-tag">约会模拟</span>
+                    <span class="category-tag">接吻挑战</span>
+                    <span class="category-tag">装扮换装</span>
+                    <span class="category-tag">剧情互动</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">精选推荐</h2>
+            
+            <div class="games-grid">
+                <!-- 游戏 1 -->
+                <article class="game-card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/love1/400/300" alt="浪漫夏日约会">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">浪漫夏日约会</h3>
+                        <p class="card-desc">在美丽的海滩上，帮助情侣们躲避路人，寻找最佳时机享受甜蜜的拥吻。</p>
+                        <div class="card-meta">
+                            <span class="rating">★★★★★</span>
+                            <span>2.3w 次游玩</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 游戏 2 -->
+                <article class="game-card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/love2/400/300" alt="甜蜜糖果店">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">甜蜜糖果店</h3>
+                        <p class="card-desc">经营一家只售卖甜蜜糖果的店铺，通过制作美味糖果来换取情侣间的亲密接触。</p>
+                        <div class="card-meta">
+                            <span class="rating">★★★★☆</span>
+                            <span>1.8w 次游玩</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 游戏 3 -->
+                <article class="game-card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/love3/400/300" alt="公主的舞会">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">公主的舞会</h3>
+                        <p class="card-desc">精心装扮你的角色，参加皇家舞会。当音乐响起，完成完美的双人舞蹈。</p>
+                        <div class="card-meta">
+                            <span class="rating">★★★★★</span>
+                            <span>3.1w 次游玩</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 游戏 4 -->
+                <article class="game-card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/love4/400/300" alt="接吻大作战">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">接吻大作战</h3>
+                        <p class="card-desc">经典的躲避障碍玩法。控制角色移动，躲避巡逻的保安和调皮的猫咪。</p>
+                        <div class="card-meta">
+                            <span class="rating">★★★★☆</span>
+                            <span>5.6w 次游玩</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 游戏 5 -->
+                <article class="game-card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/love5/400/300" alt="甜蜜早餐时光">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">甜蜜早餐时光</h3>
+                        <p class="card-desc">为心爱的人准备一份精致的早餐，在温馨的晨光中享受温馨的互动时光。</p>
+                        <div class="card-meta">
+                            <span class="rating">★★★☆☆</span>
+                            <span>9k 次游玩</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 游戏 6 -->
+                <article class="game-card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/love6/400/300" alt="情侣换装秀">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">情侣换装秀</h3>
+                        <p class="card-desc">解锁数百套情侣服装，从休闲居家到华丽礼服，打造属于你们的CP装。</p>
+                        <div class="card-meta">
+                            <span class="rating">★★★★★</span>
+                            <span>4.2w 次游玩</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="container guide-section">
+            <div class="guide-grid">
+                <div class="guide-content">
+                    <h2>如何玩转亲吻小游戏？</h2>
+                    <p>亲吻小游戏通常以休闲、互动和剧情为核心。玩家需要通过点击、拖拽或反应力挑战来推动剧情发展。以下是一些通用的游玩技巧：</p>
+                    <ul class="guide-list">
+                        <li><strong>观察时机：</strong> 在“躲避障碍”类游戏中，注意观察巡逻者的移动规律，找准空隙。</li>
+                        <li><strong>精准操作：</strong> 控制角色移动时，建议使用鼠标或触屏的微操，避免大幅度晃动。</li>
+                        <li><strong>收集道具：</strong> 很多游戏中有爱心或糖果道具，收集它们可以增加“亲密度”评分。</li>
+                        <li><strong>搭配装扮：</strong> 在换装类游戏中，注意服装的色系搭配，情侣装能获得额外奖励。</li>
+                    </ul>
+                </div>
+                <div class="guide-image">
+                    <img src="https://picsum.photos/seed/guide/600/400" alt="游戏玩法示意图">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">用户协议</a>
+                <a href="#">隐私政策</a>
+                <a href="#">联系客服</a>
+            </div>
+            <p>&copy; 2023 甜蜜游戏网 版权所有 | 仅供娱乐交流使用</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">请未成年人请在家长指导下游玩</p>
+        </div>
+    </footer>
+
+</body>
+</html>
