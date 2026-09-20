@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="花都区电信宽带官方服务指南。提供千兆光纤宽带办理、资费套餐详情、覆盖区域查询及在线预约安装服务。专业网络技术支持，畅享高速网络生活。">
+    <meta name="keywords" content="花都区电信宽带,花都电信宽带办理,花都千兆宽带,广州电信宽带,花都宽带套餐">
+    <title>花都区电信宽带-千兆光纤高速网络办理与资费查询</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --primary-dark: #004494;
+            --accent-color: #00a8ff;
+            --bg-light: #f8f9fa;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 顶部导航 */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 86, 179, 0.3);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .hero-btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .hero-btn-primary {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .hero-btn-primary:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+        }
+
+        /* 套餐展示 */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .plan-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .plan-card.featured:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .plan-name {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        .plan-speed {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .plan-features {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-gray);
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .plan-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .plan-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .plan-card.featured .plan-btn {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .plan-card.featured .plan-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* 覆盖区域 */
+        .coverage-section {
+            background-color: var(--white);
+        }
+
+        .coverage-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .coverage-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .coverage-item:hover {
+            background: #eef6ff;
+        }
+
+        .coverage-icon {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* 服务优势 */
+        .features-section {
+            background-color: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon-box {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 86, 179, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-icon-box svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* 常见问题 FAQ */
+        .faq-section {
+            background-color: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 20px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-gray);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .plan-card.featured {
+                transform: scale(1);
+            }
+
+            .plan-card.featured:hover {
+                transform: translateY(-10px);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                <span>电信花都</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#plans">宽带套餐</a>
+                <a href="#coverage">覆盖区域</a>
+                <a href="#features">服务优势</a>
+                <a href="#faq">常见问题</a>
+            </nav>
+            <a href="#contact" class="cta-btn">在线预约</a>
+        </div>
+    </header>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>花都区电信宽带<br>千兆光纤极速体验</h1>
+            <div class="hero-tags">
+                <span class="tag">千兆光纤入户</span>
+                <span class="tag">全天候技术支持</span>
+                <span class="tag">免费上门安装</span>
+            </div>
+            <p>畅享高清视频、极速游戏与稳定办公，专为花都家庭与企业打造的专属网络解决方案。</p>
+            <div class="hero-buttons">
+                <a href="#plans" class="hero-btn hero-btn-primary">查看套餐资费</a>
+                <a href="#contact" class="hero-btn" style="background:transparent; color:white; border:1px solid white;">咨询客服</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 套餐介绍 -->
+    <section id="plans" class="container">
+        <div class="section-title">
+            <h2>热门宽带套餐推荐</h2>
+            <p>灵活选择，满足家庭娱乐、远程办公及多人在线需求</p>
+        </div>
+        <div class="plans-grid">
+            <!-- 基础套餐 -->
+            <div class="plan-card">
+                <h3 class="plan-name">家庭经济版</h3>
+                <div class="plan-price">¥199<span>/月</span></div>
+                <div class="plan-speed">100M 光纤</div>
+                <ul class="plan-features">
+                    <li>适合2-3人家庭</li>
+                    <li>免费WiFi路由器</li>
+                    <li>免费宽带提速包</li>
+                    <li>每月40G国内流量</li>
+                    <li>免费安装调试</li>
+                </ul>
+                <button class="plan-btn">立即办理</button>
+            </div>
+            <!-- 推荐套餐 -->
+            <div class="plan-card featured">
+                <div class="plan-badge">热销</div>
+                <h3 class="plan-name">千兆畅享版</h3>
+                <div class="plan-price">¥399<span>/月</span></div>
+                <div class="plan-speed">1000M 光纤</div>
+                <ul class="plan-features">
+                    <li>全家流畅看4K/8K</li>
+                    <li>WiFi 6 高速路由器</li>
+                    <li>全屋智能组网服务</li>
+                    <li>每月80G国内流量</li>
+                    <li>专人定期维护</li>
+                </ul>
+                <button class="plan-btn">立即办理</button>
+            </div>
+            <!-- 商务套餐 -->
+            <div class="plan-card">
+                <h3 class="plan-name">企业专线版</h3>
+                <div class="plan-price">¥599<span>/月起</span></div>
+                <div class="plan-speed">300M-1000M</div>
+                <ul class="plan-features">
+                    <li>专线独享不共享</li>
+                    <li>固定公网IP地址</li>
+                    <li>企业级防火墙</li>
+                    <li>7*24小时专线保障</li>
+                    <li>多端口千兆汇聚</li>
+                </ul>
+                <button class="plan-btn">联系经理</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 覆盖区域 -->
+    <section id="coverage" class="coverage-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>花都区覆盖区域</h2>
+                <p>信号稳定，覆盖全区主要街道及社区</p>
+            </div>
+            <div class="coverage-list">
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>新华街全域</span>
+                </div>
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>花山镇</span>
+                </div>
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>花东镇</span>
+                </div>
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>炭步镇</span>
+                </div>
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>狮岭镇</span>
+                </div>
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>赤坭镇</span>
+                </div>
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>花都湖周边</span>
+                </div>
+                <div class="coverage-item">
+                    <span class="coverage-icon">📍</span>
+                    <span>新雅街</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务优势 -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>为什么选择电信宽带</h2>
+                <p>国家级骨干网接入，网络质量与安全有保障</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/></svg>
+                    </div>
+                    <h3>网络稳定不掉线</h3>
+                    <p>采用光纤接入，相比传统铜缆，抗干扰能力更强，网络连接更稳定。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3>高速低延迟</h3>
+                    <p>支持千兆速率，满足云游戏、高清直播及远程视频会议需求。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>安全防护系统</h3>
+                    <p>电信级防火墙服务，有效拦截恶意攻击，保障家庭及企业数据安全。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>全屋WiFi覆盖</h3>
+                    <p>提供FTTR（光纤到房间）解决方案，消除家中WiFi死角，全屋无死角覆盖。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+                <p>关于花都区电信宽带办理的疑问</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">花都电信宽带一般多久能安装？</button>
+                    <div class="faq-answer">
+                        <p>一般预约成功后，工作人员会在1-3个工作日内联系您确认安装时间。在确认线路通畅的情况下，当天即可完成安装调试。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">办理宽带需要提供什么证件？</button>
+                    <div class="faq-answer">
+                        <p>个人用户需提供身份证原件。企业用户需提供营业执照副本复印件及经办人身份证原件。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">千兆宽带需要更换路由器吗？</button>
+                    <div class="faq-answer">
+                        <p>使用千兆宽带建议更换支持WiFi 6标准的高性能路由器，以充分发挥千兆网速的潜能，避免信号瓶颈。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">如果宽带出现故障怎么报修？</button>
+                    <div class="faq-answer">
+                        <p>您可以通过“中国电信”APP在线报修，或拨打花都区本地客服热线10000号，我们的专业工程师会及时上门处理。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系与页脚 -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>花都区电信宽带</h4>
+                <p style="font-size: 0.9rem; line-height: 1.8;">
+                    专注为花都区用户提供高品质的互联网接入服务。我们致力于打造稳定、快速、安全的网络环境，助力数字生活。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#plans">套餐资费</a></li>
+                    <li><a href="#coverage">覆盖查询</a></li>
+                    <li><a href="#features">FTTR方案</a></li>
+                    <li><a href="#faq">帮助中心</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <ul>
+                    <li>营业厅地址：花都区新华街道建设北路XX号</li>
+                    <li>客服热线：10000</li>
+                    <li>工作时间：周一至周日 9:00-21:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 花都区电信服务指南. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 折叠逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // 关闭其他打开的项
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 切换当前项状态
+                    item.classList.toggle('active');
+                });
+            });
+
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+                      </html>
