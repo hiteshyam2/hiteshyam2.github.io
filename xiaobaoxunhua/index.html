@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="小宝寻花视频 - 专注于自然风光探索与植物科普的短视频分享平台。提供高清自然风光、珍稀花卉识别、四季植物变化及户外探险指南，带您领略大自然的无穷魅力。">
+    <meta name="keywords" content="小宝寻花视频,植物科普,自然风光,花卉识别,户外探险,植物百科">
+    <title>小宝寻花视频-高清植物科普与自然风光探索平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #e8f5e9;
+            --secondary-color: #ff6f00;
+            --text-main: #1a1a1a;
+            --text-secondary: #555555;
+            --text-light: #888888;
+            --bg-body: #f9f9f9;
+            --bg-card: #ffffff;
+            --border-radius: 12px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --container-width: 1200px;
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: var(--header-height);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: var(--container-width);
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .header-actions button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .header-actions button:hover {
+            background-color: #1b5e20;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #43a047 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 8px;
+            border-radius: 50px;
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-md);
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            outline: none;
+            border-radius: 50px;
+        }
+
+        .search-bar button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #e65100;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Section Titles */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 24px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .view-all {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .view-all:hover {
+            color: var(--primary-color);
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .thumbnail {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #eee;
+        }
+
+        .thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .video-card:hover .thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            color: var(--text-main);
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: auto;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .author-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+
+        /* Categories */
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .category-item {
+            padding: 8px 20px;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-item:hover, .category-item.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Guide Section */
+        .guide-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 60px;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .guide-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .guide-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .guide-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .guide-list li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .guide-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background: white;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background-color: #fafafa;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-secondary);
+            display: none;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #263238;
+            color: #cfd8dc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.9rem;
+            color: #b0bec5;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #37474f;
+            font-size: 0.85rem;
+            color: #78909c;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none; /* Simplified for mobile */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                小宝寻花<span>视频</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">热门合集</a></li>
+                    <li><a href="#">植物图鉴</a></li>
+                    <li><a href="#">户外探险</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button>订阅频道</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>探索自然之美，发现植物奥秘</h1>
+                <p>汇聚高清自然风光与植物科普短视频，带您走进奇妙的植物世界，识别珍稀花卉，记录四季变化。</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜索植物名称、花种或地区...">
+                    <button>搜索</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Categories -->
+            <section class="categories">
+                <div class="category-list">
+                    <div class="category-item active">全部推荐</div>
+                    <div class="category-item">春日赏花</div>
+                    <div class="category-item">野外识别</div>
+                    <div class="category-item">花卉摄影</div>
+                    <div class="category-item">药用植物</div>
+                    <div class="category-item">多肉植物</div>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">🌿</span>
+                    <h3 class="feature-title">高清植物图鉴</h3>
+                    <p class="feature-desc">收录数千种常见与珍稀植物，高清细节展示，助您轻松识别。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎥</span>
+                    <h3 class="feature-title">探索自然视频</h3>
+                    <p class="feature-desc">第一视角野外探险，记录花开花落，感受大自然的生命力。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💡</span>
+                    <h3 class="feature-title">实用养护指南</h3>
+                    <p class="feature-desc">专业的植物养护知识，从土壤、浇水到施肥，让您的花园更茂盛。</p>
+                </div>
+            </section>
+
+            <!-- Latest Videos -->
+            <section class="video-section">
+                <div class="section-header">
+                    <h2 class="section-title">最新视频</h2>
+                    <a href="#" class="view-all">查看更多 <span>&rarr;</span></a>
+                </div>
+                <div class="video-grid">
+                    <article class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://picsum.photos/seed/flower1/400/225" alt="春日野花">
+                            <div class="play-overlay"><div class="play-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div>
+                            <span class="duration">04:20</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">春日山野踏青：寻找那些不知名的野花</h3>
+                            <div class="card-meta">
+                                <div class="author">
+                                    <div class="author-avatar"></div>
+                                    <span>小宝探险</span>
+                                </div>
+                                <span>2小时前</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://picsum.photos/seed/rose/400/225" alt="玫瑰养护">
+                            <div class="play-overlay"><div class="play-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div>
+                            <span class="duration">08:15</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">家庭养花教程：如何养好一盆月季玫瑰</h3>
+                            <div class="card-meta">
+                                <div class="author">
+                                    <div class="author-avatar"></div>
+                                    <span>园艺小课堂</span>
+                                </div>
+                                <span>5小时前</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://picsum.photos/seed/forest/400/225" alt="森林徒步">
+                            <div class="play-overlay"><div class="play-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div>
+                            <span class="duration">12:30</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">森林深处的秘密：寻找野生兰花</h3>
+                            <div class="card-meta">
+                                <div class="author">
+                                    <div class="author-avatar"></div>
+                                    <span>自然观察</span>
+                                </div>
+                                <span>1天前</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://picsum.photos/seed/succulent/400/225" alt="多肉植物">
+                            <div class="play-overlay"><div class="play-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div>
+                            <span class="duration">05:45</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">多肉植物品种大比拼：哪一款是你的最爱</h3>
+                            <div class="card-meta">
+                                <div class="author">
+                                    <div class="author-avatar"></div>
+                                    <span>多肉星球</span>
+                                </div>
+                                <span>2天前</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://picsum.photos/seed/lotus/400/225" alt="荷花摄影">
+                            <div class="play-overlay"><div class="play-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div>
+                            <span class="duration">06:10</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">荷花摄影技巧：如何拍出清透的荷塘月色</h3>
+                            <div class="card-meta">
+                                <div class="author">
+                                    <div class="author-avatar"></div>
+                                    <span>光影捕手</span>
+                                </div>
+                                <span>3天前</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://picsum.photos/seed/autumn/400/225" alt="秋日落叶">
+                            <div class="play-overlay"><div class="play-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div>
+                            <span class="duration">10:00</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">秋日赏叶指南：寻找城市里的金黄落叶</h3>
+                            <div class="card-meta">
+                                <div class="author">
+                                    <div class="author-avatar"></div>
+                                    <span>城市漫步</span>
+                                </div>
+                                <span>4天前</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Guide Section -->
+            <section class="guide-section">
+                <div class="guide-grid">
+                    <div class="guide-text">
+                        <h3>如何开始您的植物探索之旅？</h3>
+                        <p>无论您是园艺爱好者，还是自然探索者，这里都有适合您的资源。我们提供从基础植物识别到进阶户外探险的全方位内容。</p>
+                        <ul class="guide-list">
+                            <li>学习如何通过叶形、花瓣特征快速识别常见花卉。</li>
+                            <li>掌握不同植物的生长习性和最佳种植环境。</li>
+                            <li>了解野外植物保护知识，文明观赏，不随意采摘。</li>
+                            <li>记录您的发现，分享给更多热爱自然的朋友。</li>
+                        </ul>
+                    </div>
+                    <div class="guide-image">
+                        <img src="https://picsum.photos/seed/guide/600/400" alt="植物探索指南">
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="section-header">
+                    <h2 class="section-title">常见问题</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">视频中的植物是真实存在的吗？</div>
+                    <div class="faq-answer">是的，所有视频中的植物均为真实拍摄，我们致力于推广真实的自然科普内容。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">可以在视频中使用的植物图片吗？</div>
+                    <div class="faq-answer">我们尊重版权，建议在引用图片时注明出处，并仅用于个人学习或研究目的。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">如何区分有毒植物和观赏植物？</div>
+                    <div class="faq-answer">我们会在视频描述中明确标注植物名称及是否有毒，建议观看详细说明。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">支持手机端观看吗？</div>
+                    <div class="faq-answer">完全支持。网站采用响应式设计，手机、平板和电脑均可流畅观看。</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>小宝寻花视频</h2>
+                <p>专注于自然风光探索与植物科普的短视频分享平台。带您领略大自然的无穷魅力，发现身边的植物之美。</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">内容投稿</a></li>
+                    <li><a href="#">联系合作</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>热门分类</h4>
+                <ul>
+                    <li><a href="#">春日赏花</a></li>
+                    <li><a href="#">野外识别</a></li>
+                    <li><a href="#">花卉摄影</a></li>
+                    <li><a href="#">药用植物</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <ul>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">新浪微博</a></li>
+                    <li><a href="#">B站频道</a></li>
+                    <li><a href="#">抖音号</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 小宝寻花视频 版权所有</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                // Close others
+                document.querySelectorAll('.faq-item').forEach(child => {
+                    if (child !== parent) child.classList.remove('active');
+                });
+                // Toggle current
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Category Selection Logic
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        // Search Button Interaction
+        document.querySelector('.search-bar button').addEventListener('click', () => {
+            const input = document.querySelector('.search-bar input');
+            if(input.value.trim() !== "") {
+                alert('正在搜索：' + input.value);
+            }
+        });
+    </script>
+</body>
+  </html>
